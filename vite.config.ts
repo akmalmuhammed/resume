@@ -3,7 +3,9 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-const githubPagesBase = "/akmal-s-cyber-hub/";
+const githubRepository = process.env.GITHUB_REPOSITORY;
+const githubRepositoryName = githubRepository?.split("/")[1] ?? "resume";
+const githubPagesBase = `/${githubRepositoryName}/`;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
