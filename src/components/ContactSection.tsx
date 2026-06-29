@@ -22,16 +22,16 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24">
-      <div className="max-w-5xl mx-auto px-5 sm:px-8" ref={ref}>
+    <section id="contact" className="py-20 sm:py-24">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
         >
           <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// contact</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3">Let's Work Together</h2>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3">Red Team Consulting Contact</h2>
           <p className="text-xs font-mono text-muted-foreground mb-10 max-w-md">
-            Open to security consulting, SOC advisory roles, and collaborative cybersecurity projects.
+            Open to red team consulting, cloud security assessment, adversary emulation, and offensive security tooling roles.
           </p>
         </motion.div>
 
@@ -43,12 +43,12 @@ const ContactSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -2 }}
-              className="rounded-xl border border-border bg-card p-4 flex items-center justify-between group transition-colors hover:border-primary/15"
+              className="rounded-lg border border-border bg-card p-4 flex items-center justify-between group transition-colors hover:border-primary/15"
             >
               <div className="flex items-center gap-3">
                 <motion.div
                   whileHover={{ rotate: -10, scale: 1.1 }}
-                  className="w-9 h-9 rounded-lg bg-primary/[0.07] border border-primary/15 flex items-center justify-center"
+                  className="w-9 h-9 rounded-lg bg-primary/[0.07] border border-primary/15 flex items-center justify-center shrink-0"
                 >
                   <item.icon className="w-4 h-4 text-primary" />
                 </motion.div>

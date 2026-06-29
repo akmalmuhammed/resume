@@ -4,7 +4,6 @@ import shutil
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-import fitz
 from pypdf import PdfReader
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -12,6 +11,11 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import HRFlowable, PageBreak, Paragraph, SimpleDocTemplate, Spacer
+
+try:
+    import fitz
+except ModuleNotFoundError:
+    fitz = None
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output" / "pdf"
@@ -26,95 +30,114 @@ LINE = colors.HexColor("#CBD5E1")
 
 RESUME = {
     "name": "Akmal Muhammed",
-    "title": "Security Consultant | SOC Operations | Threat Hunting | Cloud Security Advisory",
+    "title": "Offensive Security Consultant | Red Team | Adversary Emulation | Cloud Security",
     "contact_primary": "Doha, Qatar | +974 7401 5001 | akmalmuhammed93@gmail.com",
     "contact_secondary": "linkedin.com/in/akmal-muhammed-m-k | akmalmuhammed.github.io/resume",
     "summary": (
-        "Security consultant with 4+ years of experience across SOC operations, threat hunting, "
-        "incident response, and cloud security advisory. Delivers security posture assessments, "
-        "SIEM and XDR tuning, SOAR automation, executive reporting, and high-visibility event "
-        "monitoring for critical infrastructure environments."
+        "Offensive security consultant with 5 years across cybersecurity, analytics, and consulting, "
+        "including recent critical infrastructure engagements in Qatar. Specializes in red team "
+        "operations, adversary emulation, attack simulation, purple team validation, detection "
+        "engineering, and cloud security assessment across enterprise, web, mobile, OT/IoT, and "
+        "cloud environments."
     ),
     "highlights": [
-        "Microsoft SC-200 certified with hands-on experience across Microsoft Sentinel, Defender XDR, Cortex XDR/XSOAR, SentinelOne, Darktrace, and Prisma Cloud.",
-        "Delivered live SOC coverage for FIFA Intercontinental Cup, Arab Cup, F1 Qatar Grand Prix, and 8 FIFA World Cup stadiums.",
-        "Combines detection engineering, MITRE ATT&CK-driven threat hunting, KQL, Python automation, and executive stakeholder communication.",
+        "Delivered red team, VAPT, adversary emulation, and Mandiant Security Validation work across critical infrastructure environments.",
+        "Built and tuned 200+ KQL detections and hunting workflows across Microsoft Sentinel, Cortex XDR/XSOAR, SentinelOne, Defender XDR, and Darktrace.",
+        "Developed production security tools including an autonomous agentic pentest platform and MXLens phishing intelligence SaaS.",
     ],
     "experience": [
         {
             "role": "Security Consultant",
-            "company": "INTALEQ Technology & Consulting",
+            "company": "INTALEQ Technology & Consulting Services",
             "meta": "Client: Aspire Zone Foundation | Doha, Qatar | Feb 2024 - Present",
             "bullets": [
-                "Performed security posture assessments across SIEM, XDR, and cloud environments and translated findings into risk-based improvement plans.",
-                "Built Cortex XSOAR playbooks that improved investigation speed, response consistency, and analyst productivity.",
-                "Led threat hunting focused on APT39, MuddyWater, and ClickFix using MITRE ATT&CK hypotheses and telemetry correlations.",
-                "Delivered live SOC monitoring for FIFA Intercontinental Cup, Arab Cup, F1 Qatar Grand Prix, and 8 FIFA World Cup stadiums.",
-                "Investigated and contained ransomware activity on critical infrastructure while collaborating with Qatar NCSA on threat intelligence sharing.",
+                "Delivered red team and VAPT engagements across enterprise, web, mobile, wireless, OT/IoT, and cloud environments, translating attack paths into remediation plans.",
+                "Authored adversary emulation playbooks for GCC-region threat actors including APT39, MuddyWater, Stealth Falcon, and APT34 using MITRE ATT&CK mapping.",
+                "Ran quarterly Mandiant Security Validation exercises across endpoint, email, network, and cloud controls using 200+ ATT&CK-mapped techniques.",
+                "Performed controlled payload, EDR, lateral movement, privilege escalation, and Active Directory attack-path testing within approved engagement rules.",
+                "Validated Azure and GCP security posture using Prisma Cloud and Microsoft Defender for Cloud, including identity, IAM, service-principal, and conditional-access review.",
+                "Built and tuned 200+ KQL detections and threat-hunting workflows across Microsoft Sentinel, Cortex XDR/XSOAR, SentinelOne, Defender XDR, and Darktrace.",
+                "Produced technical evidence packs, executive summaries, C-level briefings, and engagement-to-remediation closure materials.",
             ],
-            "tools": "Microsoft Sentinel, Cortex XDR, Cortex XSOAR, SentinelOne, Darktrace, KQL, Python",
+            "tools": "Cobalt Strike, Core Impact, Tenable, Burp Suite Pro, Microsoft Sentinel, Cortex XDR/XSOAR, SentinelOne, Defender XDR, Darktrace, Prisma Cloud, KQL, Python",
         },
         {
-            "role": "Senior Analyst",
+            "role": "Senior Analyst - Cybersecurity & Analytics",
             "company": "Interactive Avenues (IPG) | WPP",
             "meta": "Mumbai, India | Mar 2023 - Dec 2023",
             "bullets": [
-                "Executed website security audits and mitigated cross-site scripting and malicious JavaScript injection risks.",
-                "Implemented role-based access controls for internal BI tools to reduce unauthorized data exposure.",
-                "Built Python automations to identify bot traffic and campaign anomalies in digital marketing operations.",
+                "Conducted web application security assessments identifying XSS, SQL injection, IDOR, malicious JavaScript injection, and authentication weaknesses.",
+                "Performed VAPT across enterprise application and network environments with technical evidence and remediation guidance for client teams.",
+                "Reverse-engineered malicious JavaScript injections to determine payload behavior, delivery mechanism, and attacker objective.",
+                "Built Python anomaly-detection workflows for traffic-pattern analysis, bot activity identification, and third-party script exposure review.",
+                "Implemented role-based access controls for BI/reporting platforms and triaged vulnerability-scan results into prioritized remediation guidance.",
             ],
-            "tools": "Security Audits, Python, RBAC, Analytics",
+            "tools": "Web AppSec, VAPT, Python, JavaScript analysis, RBAC, client reporting",
         },
         {
-            "role": "Executive - Analytics & Reporting",
+            "role": "Executive - Analytics and Reporting",
             "company": "Group M",
             "meta": "Bengaluru, India | Jun 2021 - Jun 2023",
             "bullets": [
-                "Delivered reporting and decision-support solutions for Disney Hotstar, Ikea, Meesho, Amway, and Kimberly Clark.",
-                "Built dashboards and recurring reporting using Power BI, Salesforce Datorama, and SQL.",
+                "Built Power BI, SQL, and Salesforce Datorama reporting workflows for enterprise clients with recurring data validation and delivery automation.",
+                "Designed least-privilege access models across multi-tenant reporting infrastructure, strengthening access-control and privilege-analysis foundations.",
+                "Managed stakeholder communication and project delivery across cross-functional teams, building client advisory and executive reporting habits.",
             ],
-            "tools": "Power BI, SQL, Salesforce Datorama, Reporting",
+            "tools": "Power BI, SQL, Salesforce Datorama, access control, stakeholder delivery",
         },
     ],
     "projects": [
         {
-            "name": "MX Lens",
-            "tagline": "Email Security SaaS",
-            "description": "B2B platform built to reduce SOC workload through automated phishing detection, an administrative control plane, and billing automation.",
-            "stack": "Next.js, Prisma, Stripe",
+            "name": "Autonomous Agentic Pentest and Red Team Platform",
+            "tagline": "Consulting-scale external assessment platform",
+            "description": "AI-powered platform running five isolated workflows for OSINT, enumeration, evidence capture, controlled validation, and technical/executive report generation with human approval gates.",
+            "stack": "Python, FastAPI, Docker, GCP, LLM orchestration",
         },
         {
-            "name": "CyberTools Hub",
-            "tagline": "SOC Operations Toolkit",
-            "description": "Privacy-first SaaS concept designed to centralize critical SOC and incident response tooling in a single workflow.",
-            "stack": "SaaS, SOC Tooling, Privacy",
+            "name": "MXLens",
+            "tagline": "Phishing intelligence SaaS",
+            "description": "B2B platform with 11 detection modules for sender spoofing, reply-to mismatch, typosquatting, QR phishing, open redirects, credential forms, DMARC/SPF/DKIM, and phishing intent scoring.",
+            "stack": "Next.js, TypeScript, Prisma, PostgreSQL, Stripe, WebAssembly",
         },
         {
-            "name": "Threat Hunting Initiative",
-            "tagline": "Aspire Zone Foundation",
-            "description": "Created hunting queries that combined Sentinel, Cortex XDR, and Kaspersky TI context to investigate MENA-focused APT activity.",
-            "stack": "Microsoft Sentinel, MITRE ATT&CK, Cortex XDR",
+            "name": "Cloud Attack Path and Control Validation",
+            "tagline": "Azure, GCP, identity, and posture review",
+            "description": "Assessment track for cloud identity paths, service principals, conditional access, IAM exposure, and posture-control coverage using cloud security tooling.",
+            "stack": "GCP, Azure/Entra ID, Prisma Cloud, Microsoft Defender for Cloud",
+        },
+        {
+            "name": "SecUtil / CyberTools Hub",
+            "tagline": "Browser-native security utilities",
+            "description": "Zero-footprint WebAssembly security utility surface for encoding, cryptography, hash checks, IOC helpers, and payload string inspection in restricted environments.",
+            "stack": "WebAssembly, JavaScript, client-side security tooling",
         },
     ],
     "skills": [
-        ("Security Operations", "Detection engineering, alert triage, threat hunting, incident response, SIEM and log analysis"),
-        ("SOC Platforms", "Microsoft Sentinel, Defender XDR, Cortex XDR/XSOAR, SentinelOne, Darktrace, Trend Micro XDR"),
-        ("Threat Intelligence", "MITRE ATT&CK, APT analysis, IOC management, Kaspersky TI, VirusTotal Enterprise"),
-        ("Automation", "Python, KQL, XSOAR playbooks, SOAR orchestration"),
-        ("Cloud and Infrastructure", "Prisma Cloud, Azure Security, Microsoft Entra ID, Forescout"),
-        ("Reporting and Tools", "Tenable, Power BI, Looker Studio, executive reporting"),
+        ("Red / Purple Team", "Red team assessments, adversary emulation, attack simulation, controlled PoC validation, detection-gap analysis"),
+        ("Payloads and EDR", "Python, C, Nim, shellcode loaders, process injection, direct syscall concepts, AMSI/ETW concepts, sleep masking"),
+        ("Lateral Movement and PrivEsc", "BloodHound, Impacket, Mimikatz, Rubeus, Kerberoasting, delegation abuse, Windows privilege escalation"),
+        ("Web and Mobile AppSec", "OWASP Top 10, Burp Suite Professional, API security, Fortra SAST/DAST, Frida, objection"),
+        ("Cloud Security", "GCP posture review, Azure/Entra ID attack paths, AWS IAM enumeration, Prisma Cloud, Microsoft Defender for Cloud"),
+        ("Threat Intelligence", "MITRE ATT&CK, ATT&CK for ICS, APT profiling, Kaspersky TIP, VirusTotal Enterprise, Mandiant Security Validation"),
+        ("SIEM / SOAR / IR", "Microsoft Sentinel, KQL, Cortex XDR/XSOAR, SentinelOne, Defender XDR, Darktrace, XSOAR playbooks"),
+        ("Tool Development", "Python, FastAPI, Next.js, TypeScript, Docker, PostgreSQL, WebAssembly, LLM orchestration"),
     ],
     "certifications_completed": [
-        "Microsoft SC-200 - Security Operations Analyst Associate",
-        "CFR - CyberSec First Responder - Threat Detection & Response",
+        "Microsoft SC-200 - Security Operations Analyst",
+        "CyberSec First Responder - Threat Detection and Response",
+        "Microsoft SC-100 - Cybersecurity Architect",
         "IBM Data Analyst - Data Analyst Specialization",
+        "Forcepoint DLP Admin",
+        "Darktrace Admin",
+        "Cortex XSOAR Admin",
     ],
     "certifications_pursuing": [
         "ISC2 CCSP - Certified Cloud Security Professional",
+        "OSCP - OffSec Certified Professional",
     ],
     "education": [
-        "B.Tech - Computer Science & Engineering",
-        "National Institute of Technology, Puducherry",
+        "B.Tech - Computer Science and Engineering",
+        "National Institute of Technology Puducherry, India",
     ],
 }
 
@@ -303,6 +326,10 @@ def draw_page_chrome(canvas, doc):
 
 
 def render_previews(pdf_path: Path):
+    if fitz is None:
+        print("Preview rendering skipped: PyMuPDF (fitz) is not installed.")
+        return
+
     if PREVIEW_DIR.exists():
         shutil.rmtree(PREVIEW_DIR)
     PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
@@ -321,7 +348,9 @@ def validate_text(pdf_path: Path):
     extracted_text = "\n".join(page.extract_text() or "" for page in reader.pages)
     required_terms = [
         "Akmal Muhammed",
-        "Security Consultant",
+        "Offensive Security Consultant",
+        "Red Team",
+        "Mandiant Security Validation",
         "Professional Experience",
         "Technical Skills",
         "Microsoft SC-200",

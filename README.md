@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
+# Akmal Muhammed Resume
 
-## Project info
+GitHub Pages resume site for Akmal Muhammed, tailored around offensive security consulting, red team operations, adversary emulation, cloud security assessment, and security tooling.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Live site: https://akmalmuhammed.github.io/resume/
 
-## How can I edit this code?
+## Stack
 
-There are several ways of editing your application.
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/Radix UI components
+- Framer Motion
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Local Development
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm ci
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The Vite dev server defaults to port `8080`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Build and Test
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+npm run test
+npm run lint
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Resume PDF
 
-## What technologies are used for this project?
+The public download is `public/akmal-muhammed-cv.pdf`. Source content for the generated PDF lives in `scripts/generate_resume_pdf.py`.
 
-This project is built with:
+Install the PDF dependencies before regenerating with the system Python:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```sh
+python -m pip install -r requirements-pdf.txt
+npm run generate:resume-pdf
+```
 
-## How can I deploy this project?
+`PyMuPDF` is only required for preview image rendering. PDF generation and text validation still run without previews when `fitz` is unavailable.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+GitHub Pages is deployed by `.github/workflows/deploy-pages.yml` on pushes to `main`. Production Vite builds use the `/resume/` base path.

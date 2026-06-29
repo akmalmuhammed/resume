@@ -5,6 +5,7 @@ import { Menu, X, Terminal } from "lucide-react";
 const links = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "Mandiant Fit", href: "#fit" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -40,7 +41,7 @@ const Navbar = () => {
         scrolled ? "glass border-b border-border/40" : ""
       }`}
     >
-      <div className="max-w-5xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-2 group">
           <motion.div
             whileHover={{ rotate: 180 }}
@@ -48,8 +49,8 @@ const Navbar = () => {
           >
             <Terminal className="w-4 h-4 text-primary" />
           </motion.div>
-          <span className="font-display text-sm font-bold text-foreground tracking-tight">
-            akmal<span className="text-primary">_</span>sec
+          <span className="font-display text-sm font-bold text-foreground">
+            akmal<span className="text-primary">_</span>redteam
           </span>
         </a>
 
@@ -76,11 +77,15 @@ const Navbar = () => {
             whileTap={{ scale: 0.97 }}
             className="ml-3 px-4 py-1.5 text-[13px] font-mono font-medium rounded-lg bg-primary text-primary-foreground transition-colors"
           >
-            {"hire_me ->"}
+            {"contact ->"}
           </motion.a>
         </div>
 
-        <button className="md:hidden text-muted-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="md:hidden text-muted-foreground"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        >
           <AnimatePresence mode="wait">
             {mobileOpen ? (
               <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
