@@ -1,47 +1,37 @@
 import { motion, useInView } from "framer-motion";
-import { Brain, Cloud, Code2, Cpu, Crosshair, Eye, Fingerprint, Network } from "lucide-react";
+import { Brain, Cloud, Code2, Crosshair, FileText } from "lucide-react";
 import { useRef } from "react";
 
 const skillGroups = [
   {
-    title: "Red / Purple Team",
+    title: "Offensive Operations",
     icon: Crosshair,
-    items: ["Red team assessments", "Adversary emulation", "Attack simulation", "Detection-gap analysis", "Controlled PoC validation"],
+    summary: "Red team assessments, adversary emulation, payload validation, lateral movement, privilege escalation, web/mobile testing, and controlled PoC validation.",
+    highlights: ["Red / purple team", "AD attack paths", "Web + mobile AppSec"],
   },
   {
-    title: "Payloads & EDR",
-    icon: Fingerprint,
-    items: ["Python / C / Nim", "Shellcode loaders", "Process injection", "AMSI / ETW concepts", "Syswhispers3", "Sleep masking"],
-  },
-  {
-    title: "AD & Lateral Movement",
-    icon: Network,
-    items: ["BloodHound", "Impacket", "Mimikatz", "Rubeus", "Kerberoasting", "Delegation abuse", "Windows privilege escalation"],
-  },
-  {
-    title: "Web & Mobile AppSec",
-    icon: Eye,
-    items: ["OWASP Top 10", "Burp Suite Pro", "API testing", "Fortra SAST / DAST", "Frida", "objection", "Certificate pinning bypass"],
-  },
-  {
-    title: "Cloud Security",
+    title: "Cloud & Identity Security",
     icon: Cloud,
-    items: ["GCP posture review", "Azure / Entra ID", "Service principal abuse", "Device-code phishing", "AWS IAM enumeration", "Prisma Cloud"],
+    summary: "GCP and Azure posture review, identity attack paths, IAM exposure, service principals, conditional access, device-code flows, and cloud-control validation.",
+    highlights: ["GCP", "Azure / Entra ID", "Prisma Cloud"],
   },
   {
-    title: "Threat Intelligence",
+    title: "Detection & Validation",
     icon: Brain,
-    items: ["MITRE ATT&CK", "ATT&CK for ICS", "APT profiling", "Kaspersky TIP", "VirusTotal Enterprise", "Mandiant Security Validation"],
+    summary: "Mandiant Security Validation, MITRE ATT&CK mapping, KQL detection engineering, threat hunting, XDR/SIEM tuning, and SOAR workflow design.",
+    highlights: ["MSV", "KQL", "Sentinel / XDR / XSOAR"],
   },
   {
-    title: "SIEM / SOAR / IR",
-    icon: Cpu,
-    items: ["Microsoft Sentinel", "KQL", "Cortex XDR / XSOAR", "SentinelOne", "Defender XDR", "Darktrace", "XSOAR playbooks"],
-  },
-  {
-    title: "Tool Development",
+    title: "Security Tool Development",
     icon: Code2,
-    items: ["FastAPI", "Next.js", "TypeScript", "Docker", "PostgreSQL", "WebAssembly", "LLM orchestration"],
+    summary: "Python, FastAPI, Next.js, TypeScript, Docker, PostgreSQL, WebAssembly, and LLM orchestration for offensive and analyst tooling.",
+    highlights: ["FastAPI", "Next.js", "Docker / GCP"],
+  },
+  {
+    title: "Consulting Delivery",
+    icon: FileText,
+    summary: "Scoping, rules of engagement, stakeholder briefings, executive reporting, technical evidence packs, remediation planning, and retest closure.",
+    highlights: ["Executive reports", "Risk narratives", "Retest cycles"],
   },
 ];
 
@@ -52,41 +42,35 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-20 sm:py-24 border-y border-border/60 bg-card/20">
       <div className="max-w-6xl mx-auto px-5 sm:px-8" ref={ref}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-12">
-          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// expertise</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Technical Skills</h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-10">
+          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// capability map</p>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Core Capabilities</h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-3xl leading-relaxed">
-            Offensive security, cloud, tooling, and consulting skills pulled from the latest CV and weighted toward the Red Team Consultant role.
+            Grouped like a senior technical portfolio: capability first, tools second.
           </p>
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 lg:grid-cols-5">
           {skillGroups.map((group, i) => (
             <motion.article
               key={group.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="group rounded-lg border border-border bg-background/70 p-5 hover:border-primary/15 transition-colors duration-300"
+              className="rounded-[8px] border border-border bg-background/70 p-5 hover:border-primary/15 transition-colors duration-300 lg:col-span-1"
             >
               <div className="flex items-center gap-2.5 mb-4">
-                <motion.div whileHover={{ scale: 1.15, rotate: 5 }} className="w-8 h-8 rounded-lg bg-primary/[0.07] border border-primary/15 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-[8px] bg-primary/[0.07] border border-primary/15 flex items-center justify-center">
                   <group.icon className="w-3.5 h-3.5 text-primary" />
-                </motion.div>
+                </div>
                 <h3 className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider">{group.title}</h3>
               </div>
+              <p className="text-sm text-foreground/70 leading-relaxed mb-4">{group.summary}</p>
               <div className="flex flex-wrap gap-1.5">
-                {group.items.map((item, j) => (
-                  <motion.span
-                    key={item}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: i * 0.06 + j * 0.025 + 0.2 }}
-                    whileHover={{ scale: 1.05, y: -1 }}
-                    className="px-2.5 py-1 text-xs font-mono rounded-lg bg-accent text-foreground/70 cursor-default"
-                  >
+                {group.highlights.map((item) => (
+                  <span key={item} className="px-2 py-0.5 text-[10px] font-mono rounded-md bg-secondary text-secondary-foreground">
                     {item}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </motion.article>

@@ -1,49 +1,57 @@
 import { motion, useInView } from "framer-motion";
-import { Bot, Cloud, ExternalLink, ShieldAlert, Wrench } from "lucide-react";
+import { Bot, Cloud, Crosshair, FileSearch, RadioTower } from "lucide-react";
 import { useRef } from "react";
 
-const projects = [
+const caseStudies = [
   {
-    title: "Autonomous Agentic Pentest & Red Team Platform",
-    tagline: "Consulting-scale attack surface assessment",
-    description:
-      "Production AI-powered external assessment platform running five isolated workflows for OSINT, enumeration, evidence capture, controlled validation, and dual-format reporting.",
-    impact:
-      "Compresses external assessment delivery from days to hours while keeping human approval gates for sensitive actions.",
-    tags: ["Python", "FastAPI", "Docker", "GCP", "LLM Orchestration"],
-    icon: Bot,
+    title: "Threat-Led Adversary Emulation Program",
+    context: "Critical infrastructure / enterprise controls",
+    problem: "Security leadership needed evidence that GCC-region threat behaviors would be detected across endpoint, identity, network, and SIEM layers.",
+    approach:
+      "Translated threat-actor TTPs into controlled test scenarios, mapped each step to ATT&CK, measured coverage, and converted validation gaps into detection-engineering work.",
+    outcome: "Created a repeatable purple-team cadence with executive-ready findings, technical evidence, and retestable remediation actions.",
+    tags: ["MITRE ATT&CK", "Mandiant Security Validation", "KQL", "Purple Team"],
+    icon: Crosshair,
   },
   {
-    title: "MXLens",
-    tagline: "Phishing intelligence SaaS",
-    description:
-      "B2B email intelligence platform with 11 detection modules covering sender spoofing, reply-to mismatch, typosquatting, QR phishing, DMARC/SPF/DKIM, and intent scoring.",
-    impact:
-      "Turns a manual phishing triage flow into a 30-second browser-local verdict without uploading message content.",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe"],
-    href: "https://mxlens.com",
-    icon: ShieldAlert,
-  },
-  {
-    title: "Cloud Attack Path & Control Validation",
-    tagline: "Azure, GCP, identity, and posture review",
-    description:
-      "Assessment track for cloud identity paths, service principals, conditional access, device-code flows, IAM exposure, and security-control coverage using cloud posture tools.",
-    impact:
-      "Positions cloud findings as exploitable paths, detection gaps, and remediation priorities instead of isolated configuration issues.",
+    title: "Cloud Identity Attack Path Assessment",
+    context: "Azure, GCP, IAM, and posture review",
+    problem: "Cloud posture findings needed to be reframed from isolated misconfigurations into realistic identity and privilege paths.",
+    approach:
+      "Reviewed identity controls, service principals, conditional access, IAM exposure, cloud posture tooling output, and detection coverage across Azure and GCP.",
+    outcome: "Produced prioritized remediation themes for identity hardening, cloud control validation, and monitoring improvements.",
     tags: ["GCP", "Azure / Entra ID", "Prisma Cloud", "Defender for Cloud"],
     icon: Cloud,
   },
   {
-    title: "SecUtil / CyberTools Hub",
-    tagline: "Browser-native security utilities",
-    description:
-      "Zero-footprint WebAssembly security utility surface for encoding, cryptography, hash checks, IOC helpers, and payload string inspection in restricted environments.",
-    impact:
-      "Supports red team and SOC workflows where uploading artifacts or installing tooling is not acceptable.",
-    tags: ["WebAssembly", "JavaScript", "Client-side", "Privacy"],
-    href: "https://cybertools.hub",
-    icon: Wrench,
+    title: "Autonomous External Assessment Platform",
+    context: "Assessment throughput and evidence quality",
+    problem: "Manual external assessments were slow to repeat, hard to scale, and inconsistent in evidence capture.",
+    approach:
+      "Built five isolated agent workflows for OSINT, enumeration, screenshots, controlled validation, and technical/executive report generation with human approval gates.",
+    outcome: "Compressed assessment cycles from days to hours while preserving consulting-quality evidence and controlled execution.",
+    tags: ["Python", "FastAPI", "Docker", "GCP", "LLM Orchestration"],
+    icon: Bot,
+  },
+  {
+    title: "Phishing Intelligence & Triage Platform",
+    context: "MXLens / browser-local analysis",
+    problem: "Analysts needed faster verdicts for suspicious emails without uploading sensitive message content to third-party systems.",
+    approach:
+      "Built browser-local detection modules for spoofing, typosquatting, QR phishing, redirects, authentication signals, and phishing intent scoring.",
+    outcome: "Reduced investigation time from manual review to a fast local verdict while supporting red-team scenario design and SOC triage workflows.",
+    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe"],
+    icon: FileSearch,
+  },
+  {
+    title: "OT/IoT Visibility & Segmentation Review",
+    context: "Clinical, venue, and operations networks",
+    problem: "Operational networks needed safer visibility into unmanaged devices and segmentation paths without disruptive active scanning.",
+    approach:
+      "Used passive visibility tooling, architecture review, and controlled path validation to identify asset exposure and segmentation improvement areas.",
+    outcome: "Delivered a safer remediation plan for device inventory, network segmentation, and monitoring without exposing sensitive asset details publicly.",
+    tags: ["OT/IoT", "Forescout", "Segmentation", "Critical Infrastructure"],
+    icon: RadioTower,
   },
 ];
 
@@ -52,63 +60,60 @@ const ProjectsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section id="projects" className="py-20 sm:py-24">
+    <section id="case-studies" className="py-20 sm:py-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8" ref={ref}>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-12">
-          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// portfolio</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Security Tooling & Project Evidence</h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-10">
+          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// case studies</p>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Anonymized Consulting Proof</h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-3xl leading-relaxed">
-            Projects framed around offensive consulting, cloud validation, phishing intelligence, and safe tooling for sensitive environments.
+            Public-safe case studies that show the operating model: problem framing, controlled execution, evidence capture, and remediation outcomes.
           </p>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((p, i) => {
-            const Wrapper = p.href ? motion.a : motion.article;
-            return (
-              <Wrapper
-                key={p.title}
-                {...(p.href ? { href: p.href, target: "_blank", rel: "noopener noreferrer" } : {})}
-                initial={{ opacity: 0, y: 25, scale: 0.98 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="group rounded-lg border border-border bg-card overflow-hidden cursor-default hover:border-primary/20 transition-colors"
-              >
-                <div className="p-5 relative h-full">
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-primary/0 group-hover:bg-primary/[0.04] rounded-bl-[60px] transition-all duration-500" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {caseStudies.map((study, i) => (
+            <motion.article
+              key={study.title}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className={i === 0 ? "rounded-[8px] border border-primary/20 bg-card p-5 lg:col-span-2" : "rounded-[8px] border border-border bg-card p-5"}
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-start">
+                <div className="w-10 h-10 rounded-[8px] bg-primary/[0.07] border border-primary/15 flex items-center justify-center shrink-0">
+                  <study.icon className="w-4.5 h-4.5 text-primary" />
+                </div>
 
-                  <div className="flex items-start justify-between mb-4 relative z-10">
-                    <motion.div
-                      whileHover={{ rotate: -10, scale: 1.15 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                      className="w-10 h-10 rounded-lg bg-primary/[0.07] border border-primary/15 flex items-center justify-center"
-                    >
-                      <p.icon className="w-4.5 h-4.5 text-primary" />
-                    </motion.div>
-                    {p.href && (
-                      <motion.div initial={{ opacity: 0, scale: 0.5 }} whileHover={{ scale: 1.2 }} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <ExternalLink className="w-4 h-4 text-muted-foreground" />
-                      </motion.div>
-                    )}
+                <div className="min-w-0 flex-1">
+                  <div className="mb-4">
+                    <h3 className="text-base font-display font-bold text-foreground">{study.title}</h3>
+                    <p className="text-[11px] font-mono text-primary/70 mt-1">{study.context}</p>
                   </div>
 
-                  <h3 className="text-sm font-display font-bold text-foreground mb-0.5">{p.title}</h3>
-                  <p className="text-[11px] font-mono text-primary/70 mb-3">{p.tagline}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">{p.description}</p>
-                  <p className="text-xs text-foreground/70 leading-relaxed mb-4 border-l border-primary/25 pl-3">{p.impact}</p>
+                  <div className="grid gap-3 md:grid-cols-3">
+                    {[
+                      ["Problem", study.problem],
+                      ["Approach", study.approach],
+                      ["Outcome", study.outcome],
+                    ].map(([label, text]) => (
+                      <div key={label} className="rounded-[8px] border border-border/70 bg-background/55 p-3">
+                        <p className="text-[10px] font-mono uppercase tracking-widest text-primary/70 mb-2">{label}</p>
+                        <p className="text-xs text-foreground/72 leading-relaxed">{text}</p>
+                      </div>
+                    ))}
+                  </div>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {p.tags.map((tag) => (
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {study.tags.map((tag) => (
                       <span key={tag} className="px-2 py-0.5 text-[10px] font-mono font-medium rounded-md bg-secondary text-secondary-foreground">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-              </Wrapper>
-            );
-          })}
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>

@@ -29,9 +29,9 @@ const ContactSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
         >
           <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// contact</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3">Red Team Consulting Contact</h2>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-3">Discuss Red Team, Cloud, Or Tooling Work</h2>
           <p className="text-xs font-mono text-muted-foreground mb-10 max-w-md">
-            Open to red team consulting, cloud security assessment, adversary emulation, and offensive security tooling roles.
+            Best fit: red team consulting, cloud identity assessment, adversary emulation, detection validation, and offensive security tooling.
           </p>
         </motion.div>
 

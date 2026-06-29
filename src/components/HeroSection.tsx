@@ -15,15 +15,15 @@ import { resumePdfDownloadName, resumePdfHref } from "@/lib/resume";
 
 const focusAreas = [
   { icon: Crosshair, label: "Red team operations" },
-  { icon: ShieldCheck, label: "Adversary emulation" },
-  { icon: Cloud, label: "Cloud attack paths" },
-  { icon: Fingerprint, label: "Payload and EDR validation" },
+  { icon: ShieldCheck, label: "Threat-led validation" },
+  { icon: Cloud, label: "Cloud and identity paths" },
+  { icon: Fingerprint, label: "Executive-ready reporting" },
 ];
 
 const stats = [
-  { value: "5", label: "Years across security and analytics" },
-  { value: "200+", label: "ATT&CK-mapped validations" },
-  { value: "200+", label: "KQL detections and hunts" },
+  { value: "5", label: "Years security, analytics, consulting" },
+  { value: "200+", label: "ATT&CK-mapped validation runs" },
+  { value: "5", label: "Anonymized proof case studies" },
   { value: "3", label: "Production security tools" },
 ];
 
@@ -56,7 +56,7 @@ const HeroSection = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gh-green opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-gh-green" />
               </span>
-              <span className="break-words">target: Google Cloud / Mandiant Red Team Consultant</span>
+              <span className="break-words">proof hub: Google Cloud / Mandiant Red Team Consultant</span>
             </motion.div>
 
             <motion.h1
@@ -65,7 +65,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="text-3xl sm:text-4xl lg:text-[3.25rem] font-display font-bold leading-[1.12] mb-4 max-w-4xl break-words"
             >
-              Red team consultant for cloud security.
+              Red Team & Cloud Security Consultant
             </motion.h1>
 
             <motion.p
@@ -74,9 +74,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-sm sm:text-base text-foreground/76 leading-7 mb-6 max-w-3xl break-words"
             >
-              I help critical infrastructure teams validate real attack paths across enterprise, web,
-              mobile, OT/IoT, and cloud environments - combining adversary emulation, payload testing,
-              detection engineering, and executive-ready consulting.
+              I validate real attack paths across cloud, identity, enterprise, web, mobile, and
+              critical infrastructure environments - then turn the evidence into executive reporting,
+              remediation priorities, and retestable detection improvements.
             </motion.p>
 
             <motion.div
@@ -112,9 +112,9 @@ const HeroSection = () => {
                   <Wrapper
                     key={text}
                     {...(href ? { href, target: href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" } : {})}
-                    className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-primary transition-colors"
+                    className="inline-flex max-w-full items-center gap-1.5 break-all font-mono text-xs text-muted-foreground hover:text-primary transition-colors"
                   >
-                    <Icon className="w-3.5 h-3.5" /> {text}
+                    <Icon className="w-3.5 h-3.5 shrink-0" /> {text}
                   </Wrapper>
                 );
               })}
@@ -127,20 +127,20 @@ const HeroSection = () => {
               className="flex flex-wrap gap-3"
             >
               <motion.a
-                href="#experience"
+                href="#case-studies"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-mono font-medium rounded-lg bg-primary text-primary-foreground"
               >
-                view_experience <ArrowDown className="w-3.5 h-3.5" />
+                view_case_studies <ArrowDown className="w-3.5 h-3.5" />
               </motion.a>
               <motion.a
-                href="#fit"
+                href="#evidence"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-mono font-medium rounded-lg border border-border bg-background/55 text-foreground hover:bg-accent transition-colors"
               >
-                mandiant_fit
+                role_evidence
               </motion.a>
               <motion.a
                 href={resumePdfHref}

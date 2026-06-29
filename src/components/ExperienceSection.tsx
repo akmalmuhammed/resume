@@ -133,10 +133,10 @@ const ExperienceSection = () => {
     <section id="experience" className="py-20 sm:py-24">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// career</p>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Relevant Consulting Experience</h2>
+          <p className="text-xs font-mono font-medium text-primary uppercase tracking-widest mb-2">// cv detail</p>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground">Professional Experience</h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-2xl leading-relaxed">
-            Public-facing summary tailored for red team consulting: high-signal outcomes, client advisory, and sanitized operational detail.
+            The resume timeline behind the proof above, kept public-safe and focused on consulting impact.
           </p>
         </motion.div>
 

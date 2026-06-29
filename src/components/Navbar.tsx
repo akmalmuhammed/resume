@@ -4,11 +4,12 @@ import { Menu, X, Terminal } from "lucide-react";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Mandiant Fit", href: "#fit" },
-  { label: "Projects", href: "#projects" },
+  { label: "Proof", href: "#evidence" },
+  { label: "Cases", href: "#case-studies" },
+  { label: "Tools", href: "#tools" },
+  { label: "Delivery", href: "#delivery" },
+  { label: "CV", href: "#experience" },
   { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
@@ -54,7 +55,7 @@ const Navbar = () => {
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-0.5">
+        <div className="hidden lg:flex items-center gap-0.5">
           {links.map((l) => (
             <a
               key={l.href}
@@ -82,7 +83,7 @@ const Navbar = () => {
         </div>
 
         <button
-          className="md:hidden text-muted-foreground"
+          className="lg:hidden text-muted-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -107,7 +108,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden glass border-b border-border/50 overflow-hidden"
+            className="lg:hidden glass border-b border-border/50 overflow-hidden"
           >
             <div className="px-5 pb-4 pt-1">
               {links.map((l, i) => (
